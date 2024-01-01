@@ -1,5 +1,5 @@
 # will help us create a redis container
-FROM redis:alpine
+FROM --platform=linux/amd64 redis:alpine
 
 EXPOSE 6379
 

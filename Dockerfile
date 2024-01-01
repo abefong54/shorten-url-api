@@ -1,4 +1,4 @@
-FROM golang:alpine as builder 
+FROM --platform=linux/amd64 golang:alpine as builder 
 
 # CREATE A FOLDER FOR OUR BUILD
 RUN mkdir /build
