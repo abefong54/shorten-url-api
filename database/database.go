@@ -23,7 +23,7 @@ func CreateClient(dbNo int) *redis.Client {
 		}
 
 	} else {
-		buildOpts, err := redis.ParseURL(os.Getenv("REDIS_URL"))
+		buildOpts, err := redis.ParseURL(os.Getenv("REDISCLOUD_URL"))
 		if err != nil {
 			panic(err)
 		}
