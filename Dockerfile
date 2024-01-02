@@ -24,7 +24,9 @@ COPY --from=builder /build/main /app/
 
 WORKDIR /app
 
-EXPOSE 8080
+EXPOSE $PORT
+RUN echo "PORT IN DOCKERFILE: " 
+RUN echo $PORT
 
 # RUN MAIN
 CMD ["/app/main"]
