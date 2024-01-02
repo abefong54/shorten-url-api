@@ -2,7 +2,6 @@ package database
 
 import (
 	"context"
-	"fmt"
 	"os"
 
 	"github.com/go-redis/redis/v8"
@@ -16,23 +15,20 @@ func CreateClient(dbNo int) *redis.Client {
 
 	if os.Getenv("LOCAL") == "true" {
 
-		redisAddress := os.Getenv("DB_ADDRESS")
+		redisAddress := os.Getenv("REDIS_URL")
 		options = &redis.Options{
 			Addr:     redisAddress,
-			Password: os.Getenv("DB_PASS"),
+			Password: os.Getenv("REDISPASSWORD"),
 			DB:       dbNo,
 		}
 
 	} else {
-		buildOpts, err := redis.ParseURL(os.Getenv("REDISCLOUD_URL"))
+		buildOpts, err := redis.ParseURL(os.Getenv("REDIS_URL"))
 		if err != nil {
 			panic(err)
 		}
 		options = buildOpts
 	}
-
-	fmt.Println("local: DB_ADDRESS: ", os.Getenv("DB_ADDRESS"))
-	fmt.Println("heroku: REDISCLOUD_URL: ", os.Getenv("REDISCLOUD_URL"))
 
 	rdb := redis.NewClient(options)
 	return rdb

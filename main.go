@@ -49,15 +49,9 @@ func main() {
 		port = "8080" // Use a default port if not set
 	}
 
-	fmt.Println("DOMAIN: ", os.Getenv("DOMAIN"))
-	fmt.Println("APP_PORT: ", os.Getenv("APP_PORT"))
-	fmt.Println("API_QUOTA: ", os.Getenv("API_QUOTA"))
-	fmt.Println("ANALYTICS_KEY: ", os.Getenv("ANALYTICS_KEY"))
-	fmt.Println("LOCAL_DOMAIN: ", os.Getenv("LOCAL_DOMAIN"))
-	fmt.Println("APP_PORT: ", os.Getenv("APP_PORT"))
-	fmt.Println("DB_ADDRESS: ", os.Getenv("DB_ADDRESS"))
-	fmt.Println("DB_PASS: ", os.Getenv("DB_PASS"))
-	fmt.Println("PORT: ", os.Getenv("PORT"))
+	// DB STUFF
+	// fmt.Println("DB STUFF")
+	// fmt.Println("DB STUFF")
 
 	app.Listen(":" + port)
 }
