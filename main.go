@@ -39,12 +39,14 @@ func main() {
 	}))
 
 	app.Use(logger.New())
-
 	setupRoutes(app)
 
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = ":8080" // Use a default port if not set
 	}
+
+	fmt.Println("PORT: ", port)
+
 	app.Listen(port)
 }
