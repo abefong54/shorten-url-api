@@ -44,7 +44,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080" // Use a default port if not set
+		port = ":8080" // Use a default port if not set
 	}
 	app.Listen(port)
 }

@@ -24,7 +24,7 @@ COPY --from=builder /build/main /app/
 
 WORKDIR /app
 
-EXPOSE 8080
+EXPOSE $PORT
 
 # RUN MAIN
 CMD ["/app/main"]
