@@ -42,7 +42,10 @@ func main() {
 	app.Use(logger.New())
 
 	setupRoutes(app)
-
-	log.Fatal(app.Listen(os.Getenv("APP_PORT")))
+	if os.Getenv("PORT") == "" {
+		log.Fatal(app.Listen(os.Getenv("APP_PORT")))
+	} else {
+		log.Fatal(app.Listen(os.Getenv("PORT")))
+	}
 
 }
