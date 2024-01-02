@@ -5,11 +5,11 @@ services:
   api:
     build: .
     platform: linux/arm64 # required to run on  GCP
-    ports:
-      - 8080:8080
+    # ports:
+    #   - 8080:8080
     environment:
       LOCAL: "true"
-      PORT: $PORT # dynamic for heroku
+      # PORT: $PORT # dynamic for heroku
       REDIS_URL: redis
     depends_on: # required for local instance of redis
       - redis
