@@ -46,7 +46,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = ":8080" // Use a default port if not set
+		port = "8080" // Use a default port if not set
 	}
 
 	fmt.Println("DOMAIN: ", os.Getenv("DOMAIN"))
@@ -59,5 +59,5 @@ func main() {
 	fmt.Println("DB_PASS: ", os.Getenv("DB_PASS"))
 	fmt.Println("PORT: ", os.Getenv("PORT"))
 
-	app.Listen(port)
+	app.Listen(":" + port)
 }
