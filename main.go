@@ -57,6 +57,7 @@ func main() {
 	fmt.Println("APP_PORT: ", os.Getenv("APP_PORT"))
 	fmt.Println("DB_ADDRESS: ", os.Getenv("DB_ADDRESS"))
 	fmt.Println("DB_PASS: ", os.Getenv("DB_PASS"))
+	fmt.Println("PORT: ", os.Getenv("PORT"))
 
 	app.Listen(port)
 }
