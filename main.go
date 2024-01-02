@@ -22,6 +22,9 @@ func setupRoutes(app *fiber.App) {
 // APP variable is an instance of the Fiber library
 // we will pass it around
 func main() {
+
+	fmt.Println("starting server")
+
 	err := godotenv.Load()
 
 	if err != nil {
