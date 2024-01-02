@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"github.com/go-redis/redis/v8"
@@ -29,6 +30,10 @@ func CreateClient(dbNo int) *redis.Client {
 		}
 		options = buildOpts
 	}
+
+	fmt.Println("local: DB_ADDRESS: ", os.Getenv("DB_ADDRESS"))
+	fmt.Println("heroku: REDISCLOUD_URL: ", os.Getenv("REDISCLOUD_URL"))
+
 	rdb := redis.NewClient(options)
 	return rdb
 }

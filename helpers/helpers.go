@@ -26,3 +26,13 @@ func RemoveDomainError(url string) bool {
 
 	return newURL != os.Getenv("DOMAIN")
 }
+
+func getDomain() string {
+	domain := ""
+
+	domain = os.Getenv("DOMAIN")
+	if os.Getenv("PORT") == "8080" {
+		domain = os.Getenv("LOCAL_DOMAIN")
+	}
+	return domain
+}

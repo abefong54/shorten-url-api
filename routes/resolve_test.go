@@ -65,6 +65,7 @@ func TestResolveURLWithoutCustomShort(t *testing.T) {
 	server.Get("/:url", ResolveURL)
 
 	url := os.Getenv("DOMAIN") + urlId
+
 	req, _ := http.NewRequest(http.MethodGet, url, nil)
 	req.Header.Set("Content-Type", "application/json")
 
