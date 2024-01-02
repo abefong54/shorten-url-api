@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"time"
 
@@ -43,9 +42,11 @@ func main() {
 
 	setupRoutes(app)
 	if os.Getenv("PORT") == "" {
-		log.Fatal(app.Listen(os.Getenv("APP_PORT")))
+		app.Listen(os.Getenv("APP_PORT"))
+		// log.Fatal(app.Listen(os.Getenv("APP_PORT")))
 	} else {
-		log.Fatal(app.Listen(os.Getenv("PORT")))
+		app.Listen(os.Getenv("PORT"))
+		// log.Fatal(app.Listen(os.Getenv("PORT")))
 	}
 
 }
