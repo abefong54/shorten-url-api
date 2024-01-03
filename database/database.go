@@ -27,9 +27,8 @@ func CreateClient(dbNo int) *redis.Client {
 	} else {
 		fmt.Println("not local")
 		rdb := redis.NewClient(&redis.Options{
-			Addr:     os.Getenv("REDIS_URL"),
-			Password: os.Getenv("REDISPASSWORD"),
-			DB:       dbNo,
+			Addr: os.Getenv("REDIS_URL"),
+			DB:   dbNo,
 		})
 		fmt.Println("rdb")
 		fmt.Println(rdb)
