@@ -31,6 +31,7 @@ func CreateClient(dbNo int) *redis.Client {
 			Password: os.Getenv("REDISPASSWORD"),
 			DB:       dbNo,
 		})
+		fmt.Println(rdb)
 		return rdb
 	}
 }
