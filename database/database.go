@@ -13,6 +13,7 @@ var Ctx = context.Background()
 func CreateClient(dbNo int) *redis.Client {
 
 	local := os.Getenv("LOCAL")
+	fmt.Println("TESTING TB")
 
 	if local == "true" {
 		rdb := redis.NewClient(&redis.Options{
