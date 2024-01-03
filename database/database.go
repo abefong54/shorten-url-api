@@ -11,19 +11,23 @@ var Ctx = context.Background()
 
 func CreateClient(dbNo int) *redis.Client {
 
-	// var options *redis.Options
+	local := os.Getenv("LOCAL")
 
-	// redisAddress := os.Getenv("REDIS_URL")
-	// options = &redis.Options{
-	// 	Addr:     redisAddress,
-	// 	Password: os.Getenv("REDISPASSWORD"),
-	// 	DB:       dbNo,
-	// }
+	if local == "true" {
+		rdb := redis.NewClient(&redis.Options{
+			Addr:     os.Getenv("LOCAL_REDIS_URL"),
+			Password: os.Getenv("LOCAL_REDISPASSWORD"),
+			DB:       dbNo,
+		})
 
-	rdb := redis.NewClient(&redis.Options{
-		Addr:     os.Getenv("REDIS_URL"),
-		Password: os.Getenv("REDISPASSWORD"),
-		DB:       dbNo,
-	})
-	return rdb
+		return rdb
+
+	} else {
+		rdb := redis.NewClient(&redis.Options{
+			Addr:     os.Getenv("REDIS_URL"),
+			Password: os.Getenv("REDISPASSWORD"),
+			DB:       dbNo,
+		})
+		return rdb
+	}
 }
