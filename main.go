@@ -52,5 +52,9 @@ func main() {
 		port = os.Getenv("PORT")
 	}
 
+	fmt.Println("TESTING VARS")
+	fmt.Println(os.Getenv("REDIS_URL"))
+	fmt.Println(os.Getenv("REDISPASSWORD"))
+
 	app.Listen(":" + port)
 }
