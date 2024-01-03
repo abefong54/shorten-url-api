@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"github.com/go-redis/redis/v8"
@@ -23,6 +24,7 @@ func CreateClient(dbNo int) *redis.Client {
 		return rdb
 
 	} else {
+		fmt.Println("not local")
 		rdb := redis.NewClient(&redis.Options{
 			Addr:     os.Getenv("REDIS_URL"),
 			Password: os.Getenv("REDISPASSWORD"),
