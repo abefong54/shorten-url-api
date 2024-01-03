@@ -49,9 +49,5 @@ func main() {
 		port = "8080" // Use a default port if not set
 	}
 
-	// DB STUFF
-	// fmt.Println("DB STUFF")
-	// fmt.Println("DB STUFF")
-
 	app.Listen(":" + port)
 }

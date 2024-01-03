@@ -6,11 +6,10 @@ services:
     build: .
     platform: linux/arm64 # required to run in cloud
     ports:
-      - "${PORT}:${PORT}"
+      - "8080:8080"
     environment:
       # LOCAL: "false"
-      PORT: ${PORT}
-      REDIS_URL: redis
+      PORT: 8080
     depends_on: # required for local instance of redis
       - redis
   redis:
