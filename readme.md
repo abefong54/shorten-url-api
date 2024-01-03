@@ -5,32 +5,31 @@ URL Shortner
 ## Description
 
 A simple URL shortning API with functionality similar to TinyURL.
-We use Redis as a local db for v1.
+We use Redis as a lightweight db for v1.
+
+We deploy using (Railway) [https://docs.railway.app/overview/about-railway] for infrastructure automation. Railway is a deployment platform designed to streamline the software development life-cycle, starting with instant deployments and effortless scale.
+
+We use (apianalytics)[https://github.com/tom-draper/api-analytics], A free lightweight API analytics solution, complete with a dashboard, to track requests to the API.
+
+API Analytics Dashboard (here) [https://www.apianalytics.dev/dashboard/ee19cf67f5a44a2c8218b07075eb472f]
+Note - you will need the API key associated to our API to access the dashboard!
 
 ## Getting Started
 
 ### Dependencies
 
 - GoLang - go version go1.19.3
-- Docker
-- github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
-- github.com/go-redis/redis/v8 v8.11.5
-- github.com/gofiber/fiber/v2 v2.51.0
+- Docker (for local development/testing)
 
 ### Installing
 
 - Clone repo to your local machine.
-- CD into `./shorten-url` directory and run the following command to install dependencies.
-
-```
-go mod tidy
-```
-
-- Any modifications needed to be made to files/folders
+- This application requires you to have Docker installed locally.
+- The Dockerfile included will build the main go build for the application to run and a local Redis container for DB functionality.
 
 ### Executing program
 
-- from the `./shorten-url` directory level run docker containers using the following command
+- from the top directory level run docker containers using the following command:
 
 ```
 docker-compose up -d
@@ -41,7 +40,8 @@ docker-compose up -d
 - After the container is running with the db and the api images,
   use a service like Postman to make a POST call to `http://127.0.0.1:8080/api/v1`
 
-- Provide a JSON body like the one below. custom_short and expiry are optional.
+- Provide a JSON body like the one below. Note: custom_short and expiry are optional.
+  If custom short is not provided, we will
 
 ```
 {
