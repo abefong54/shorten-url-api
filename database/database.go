@@ -14,25 +14,33 @@ func CreateClient(dbNo int) *redis.Client {
 
 	local := os.Getenv("LOCAL")
 	fmt.Println("TESTING TB")
+	var options *redis.Options
 
 	if local == "true" {
-		rdb := redis.NewClient(&redis.Options{
-			Addr:     os.Getenv("LOCAL_REDIS_URL"),
+		redisAddress := os.Getenv("LOCAL_REDIS_URL")
+		// rdb := redis.NewClient(&redis.Options{
+		// 	Addr:     os.Getenv("LOCAL_REDIS_URL"),
+		// 	Password: os.Getenv("LOCAL_REDISPASSWORD"),
+		// 	DB:       dbNo,
+		// })
+		options = &redis.Options{
+			Addr:     redisAddress,
 			Password: os.Getenv("LOCAL_REDISPASSWORD"),
 			DB:       dbNo,
-		})
-
-		return rdb
+		}
 
 	} else {
 		fmt.Println("not local")
-		rdb := redis.NewClient(&redis.Options{
-			Addr: os.Getenv("REDIS_URL"),
-			DB:   dbNo,
-		})
-		fmt.Println("rdb")
-		fmt.Println(rdb)
-		fmt.Println("____")
-		return rdb
+		buildOpts, err := redis.ParseURL(os.Getenv("REDIS_URL"))
+		if err != nil {
+			panic(err)
+		}
+		options = buildOpts
 	}
+
+	rdb := redis.NewClient(options)
+	fmt.Println("rdb")
+	fmt.Println(rdb)
+	fmt.Println("____")
+	return rdb
 }
