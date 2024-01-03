@@ -53,6 +53,7 @@ func main() {
 	}
 
 	fmt.Println("TESTING VARS")
+	fmt.Println(os.Getenv("LOCAL"))
 	fmt.Println(os.Getenv("REDIS_URL"))
 	fmt.Println(os.Getenv("REDISPASSWORD"))
 
