@@ -23,7 +23,7 @@ func setupRoutes(app *fiber.App) {
 // we will pass it around
 func main() {
 
-	fmt.Println("starting server")
+	fmt.Println("STARTING SERVER")
 
 	err := godotenv.Load()
 
@@ -51,11 +51,5 @@ func main() {
 	} else {
 		port = os.Getenv("PORT")
 	}
-
-	fmt.Println("TESTING VARS")
-	fmt.Println(os.Getenv("LOCAL"))
-	fmt.Println(os.Getenv("REDIS_URL"))
-	fmt.Println(os.Getenv("REDISPASSWORD"))
-
 	app.Listen(":" + port)
 }
