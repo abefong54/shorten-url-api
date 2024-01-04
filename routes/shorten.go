@@ -38,9 +38,10 @@ func ShortenURL(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Could not parse JSON"})
 	}
 
-	// implement rate limiting, check the IP of client
-	// if the user already has used this service, (we have the ip)
-	// then we decrement the rate we allow
+	// implement rate limiting,
+
+	// check the IP of client
+	// if the user already has used this service, (we have the ip) then we decrement the rate we allow
 	r2 := database.CreateClient(1)
 	defer r2.Close() // closes the client after the end of the call stack
 
@@ -52,12 +53,11 @@ func ShortenURL(c *fiber.Ctx) error {
 	} else {
 		// we found the user, decrement user rate count
 		valInt, _ := strconv.Atoi(val)
-		valInt = 1 // FOR TESTING
 		if valInt <= 0 {
 			// exceeded rate limit
 			limit, _ := r2.TTL(database.Ctx, c.IP()).Result()
 			return c.Status(fiber.StatusTooManyRequests).JSON(fiber.Map{
-				"error":            "Rate limit exceeded",
+				"error":            "Rate limit exceeded. Please try again later!",
 				"rate_limit_reset": limit / time.Nanosecond / time.Minute,
 			})
 		}
@@ -98,8 +98,11 @@ func ShortenURL(c *fiber.Ctx) error {
 		})
 	}
 
-	// set the expiry time if not provided by user
+	// SET EXPIRY IF NOT PROVIDED BY USER
+	fmt.Println("expiry sent:")
+	fmt.Println(body.Expiry)
 	if body.Expiry == 0 {
+		fmt.Println("expiry not set")
 		body.Expiry = 24
 	}
 
@@ -111,11 +114,12 @@ func ShortenURL(c *fiber.Ctx) error {
 		})
 	}
 
+	rate, _ := strconv.Atoi(os.Getenv("API_QUOTA"))
 	resp := ShortenURLResponse{
 		URL:             body.URL,
 		CustomShort:     "",
 		Expiry:          body.Expiry,
-		XRateRemaining:  10,
+		XRateRemaining:  rate,
 		XRateLimitReset: 30,
 	}
 	// DECREMENT IP usage each time we call this function
@@ -125,7 +129,7 @@ func ShortenURL(c *fiber.Ctx) error {
 	val, _ = r2.Get(database.Ctx, c.IP()).Result()
 	resp.XRateRemaining, _ = strconv.Atoi(val)
 
-	// reset the time since we creating a new one
+	// reset the TTL (time to live) since we creating a new one
 	ttl, _ := r2.TTL(database.Ctx, c.IP()).Result()
 	resp.XRateLimitReset = ttl / time.Nanosecond / time.Minute
 
