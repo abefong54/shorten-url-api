@@ -1,8 +1,6 @@
 package routes
 
 import (
-	"fmt"
-
 	"github.com/abefong54/shorten-url/database"
 	"github.com/go-redis/redis/v8"
 	"github.com/gofiber/fiber/v2"
@@ -30,16 +28,6 @@ func ResolveURL(c *fiber.Ctx) error {
 
 	// CHECK EXPIRY
 
-	counter := rInr.Incr(database.Ctx, "counter") // increment the use count of this url in the db
-	fmt.Println("counter")
-	fmt.Println(counter)
-
-	// counterVal, _ = r.Get(database.Ctx, urlID).Result()
-	// if val != "" {
-	// 	// the value already exists
-	// 	return c.Status(fiber.StatusConflict).JSON(fiber.Map{
-	// 		"error": "Custom short URL already in use.",
-	// 	})
-	// }
+	_ = rInr.Incr(database.Ctx, "counter") // increment the use count of this url in the db
 	return c.Redirect(value, 301)
 }

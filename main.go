@@ -51,5 +51,8 @@ func main() {
 	} else {
 		port = os.Getenv("PORT")
 	}
+	fmt.Println("STARTED SERVER")
+
 	app.Listen(":" + port)
+
 }

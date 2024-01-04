@@ -99,8 +99,6 @@ func ShortenURL(c *fiber.Ctx) error {
 	}
 
 	// SET EXPIRY IF NOT PROVIDED BY USER
-	fmt.Println("expiry sent:")
-	fmt.Println(body.Expiry)
 	if body.Expiry == 0 {
 		fmt.Println("expiry not set")
 		body.Expiry = 24
