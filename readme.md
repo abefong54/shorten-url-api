@@ -1,6 +1,4 @@
-# Project Title
-
-URL Shortner
+# URL SHORTENER SERVICE
 
 ## Description
 
@@ -35,16 +33,17 @@ Note - you will need the API key associated to our API to access the dashboard!
 docker-compose up -d
 ```
 
-### Using the API
+## Using the API
 
-## PUBLIC API
+### PUBLIC API DETAILS
 
-The service is available at the following PUBLIC_URL:
-`https://shorten-url-api-production.up.railway.app`
+The service is available at the following endpoint.
 
-# AVAILABLE ROUTES
+- PUBLIC_URL: `https://shorten-url-api-production.up.railway.app`
 
-1. POST request to create a new short url.
+### AVAILABLE ROUTES
+
+#### 1. POST request to create a new short url.
 
 - ENDPOINT: PUBLIC_URL + `/api/v1`
 
@@ -65,13 +64,13 @@ NOTES:
 - if custom short is not given, a random id will be generated.
 - if expiry time is not given, a default time of 24 hours will be saved.
 
-2. GET request to resolve an existing, unexpired short url.
+#### 2. GET request to resolve an existing, unexpired short url.
 
 - ENDPOINT: PUBLIC_URL + `/my-custom-short-id`
 
 - Example Payload: Notice that the payload should be provided in the URL (not via json) and should be a valid ID of a valid short url.
 
-# LOCAL/DEVELOPMENT API
+## LOCAL/DEVELOPMENT API
 
 - After the container is running with the db and the api images,
   use a service like Postman to make a POST call to `http://127.0.0.1:8080/api/v1`
