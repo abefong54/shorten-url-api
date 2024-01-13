@@ -9,7 +9,7 @@ We deploy using (Railway) [https://docs.railway.app/overview/about-railway] for 
 
 We use (apianalytics)[https://github.com/tom-draper/api-analytics], A free lightweight API analytics solution, complete with a dashboard, to track requests to the API.
 
-API Analytics Dashboard (here) [https://www.apianalytics.dev/dashboard/ee19cf67f5a44a2c8218b07075eb472f]
+API Analytics Dashboard (here) [https://www.apianalytics.dev/dashboard/{key}]
 Note - you will need the API key associated to our API to access the dashboard!
 
 ## Getting Started
@@ -99,7 +99,7 @@ NOTES:
 
 ```
 
-- If the `custom_short`` value has already been used before, you will see an error message like the one below:
+- If the `custom_short` value has already been used before, you will see an error message like the one below:
 
 ```
 {
@@ -107,7 +107,7 @@ NOTES:
 }
 ```
 
-- If the `short_url`` value has expired, it will be removed from the database and you will receive the following message:
+- If the `short_url` value has expired, it will be removed from the database and you will receive the following message:
 
 ```
 {
