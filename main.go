@@ -3,12 +3,11 @@ package main
 import (
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/abefong54/shorten-url/routes"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/gofiber/fiber/v2/middleware/monitor"
 	"github.com/joho/godotenv"
 	analytics "github.com/tom-draper/api-analytics/analytics/go/fiber"
 )
@@ -32,14 +31,8 @@ func main() {
 	}
 
 	app := fiber.New()
-	app.Use(analytics.Analytics(os.Getenv("ANALYTICS_KEY"))) // Add analytics middleware
-
-	// Add rate limiting middleware
-	app.Use(limiter.New(limiter.Config{
-		Max:               20,
-		Expiration:        30 * time.Second,
-		LimiterMiddleware: limiter.SlidingWindow{},
-	}))
+	app.Use(analytics.Analytics(os.Getenv("ANALYTICS_KEY")))                             // Add analytics middleware
+	app.Get("/metrics", monitor.New(monitor.Config{Title: "URL Shortner Metrics Page"})) // Initialize default middleware settings to /metrics
 
 	app.Use(logger.New())
 	setupRoutes(app)

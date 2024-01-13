@@ -5,11 +5,11 @@
 A simple URL shortning API with functionality similar to TinyURL.
 We use Redis as a lightweight db for v1.
 
-We deploy using (Railway) [https://docs.railway.app/overview/about-railway] for infrastructure automation. Railway is a deployment platform designed to streamline the software development life-cycle, starting with instant deployments and effortless scale.
+We deploy using Railway, [https://docs.railway.app/overview/about-railway] for infrastructure automation. Railway is a deployment platform designed to streamline the software development life-cycle, starting with instant deployments and effortless scale.
 
-We use (apianalytics)[https://github.com/tom-draper/api-analytics], A free lightweight API analytics solution, complete with a dashboard, to track requests to the API.
+We use[https://github.com/tom-draper/api-analytics], A free lightweight API analytics solution, complete with a dashboard, to track requests to the API.
 
-API Analytics Dashboard (here) [https://www.apianalytics.dev/dashboard/{key}]
+API Analytics Dashboard: [https://www.apianalytics.dev/dashboard/efaefbb3cf2643159d5b8e63798cc4ce]
 Note - you will need the API key associated to our API to access the dashboard!
 
 ## Getting Started
